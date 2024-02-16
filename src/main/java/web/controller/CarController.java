@@ -3,10 +3,9 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import web.Model.Car;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import web.Service.CarService;
 import web.Service.CarServiceImpl;
 
 import java.util.ArrayList;
@@ -16,12 +15,10 @@ import java.util.Random;
 @Controller
 //@RequestMapping("/cars")
 public class CarController {
-
-
-    private CarServiceImpl car;
+    private CarService car;
 
     @Autowired
-    public CarController(CarServiceImpl car) {
+    public CarController(CarService car) {
         this.car = car;
     }
 

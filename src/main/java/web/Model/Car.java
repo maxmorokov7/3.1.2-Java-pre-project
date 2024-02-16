@@ -17,6 +17,12 @@ public class Car {
     public Car() {
     }
 
+    public Car(String model, int horsePower, int year) {
+        this.model = model;
+        this.horsePower = horsePower;
+        this.year = year;
+    }
+
     public String getModel() {
         return model;
     }
@@ -41,10 +47,15 @@ public class Car {
         this.year = year;
     }
 
-    public Car(String model, int horsePower, int year) {
-        this.model = model;
-        this.horsePower = horsePower;
-        this.year = year;
+    public static List<Car> getCarList() {
+        Random rnd = new Random();
+        List<Car> list = new ArrayList<>();
+        list.add(new Car("BMW", rnd.nextInt(150, 350), rnd.nextInt(2000, 2024)));
+        list.add(new Car("Honda", rnd.nextInt(50, 150), rnd.nextInt(2000, 2022)));
+        list.add(new Car("Opel", rnd.nextInt(50, 180), rnd.nextInt(2000, 2018)));
+        list.add(new Car("Nissan", rnd.nextInt(100, 150), rnd.nextInt(1990, 2010)));
+        list.add(new Car("Porshe", rnd.nextInt(300, 500), rnd.nextInt(2005, 2023)));
+        return list;
     }
 
     @Override
@@ -56,15 +67,5 @@ public class Car {
                 '}';
     }
 
-    public static List<Car> getCarList() {
-        Random rnd = new Random();
-        List<Car> list = new ArrayList<>();
-        list.add(new Car("BMW", rnd.nextInt(150, 350), rnd.nextInt(2000, 2024)));
-        list.add(new Car("Honda", rnd.nextInt(50, 150), rnd.nextInt(2000, 2022)));
-        list.add(new Car("Opel", rnd.nextInt(50, 180), rnd.nextInt(2000, 2018)));
-        list.add(new Car("Nissan", rnd.nextInt(100, 150), rnd.nextInt(1990, 2010)));
-        list.add(new Car("Porshe", rnd.nextInt(300, 500), rnd.nextInt(2005, 2023)));
-        return list;
-    }
 }
 
