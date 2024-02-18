@@ -54,7 +54,7 @@ public class Car {
         list.add(new Car("Honda", rnd.nextInt(50, 150), rnd.nextInt(2000, 2022)));
         list.add(new Car("Opel", rnd.nextInt(50, 180), rnd.nextInt(2000, 2018)));
         list.add(new Car("Nissan", rnd.nextInt(100, 150), rnd.nextInt(1990, 2010)));
-        list.add(new Car("Porshe", rnd.nextInt(300, 500), rnd.nextInt(2005, 2023)));
+        list.add(new Car("Porsche", rnd.nextInt(300, 500), rnd.nextInt(2005, 2023)));
         return list;
     }
 
