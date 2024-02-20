@@ -8,7 +8,7 @@
 
 <h2>Users</h2>
 <br>
-<table class="table">
+<table border="1">
     <tr>
         <th>Name</th>
         <th>Surname</th>
@@ -16,22 +16,22 @@
         <th>Salary</th>
         <th>Operations</th>
 
-    </tr>
-        <tr>
-            <td>${user.name}</td>
-            <td>${user.surname}</td>
-            <td>${user.department}</td>
-            <td>${user.salary}</td>
-            <td>
-                <a href="/updateUser?id=${user.id}">Edit</a>
 
-                <a href="/deleteUser?id=${user.id}">Delete</a>
-            </td>
-        </tr>
+    </tr>
+    <tr>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.department}"></td>
+    </tr>
+    <tr>
+        <td><a href="/update?id=${user.id}">Update</a></td>
+        <td><a href="/delete?id=${user.id}">Delete</a><td/>
+    </tr>
 </table>
 
 <br>
-<input type="button" value="Add" onclick="window.location.href = '/new'"/>
+<input type="button" value="Add" onclick="window.location.href = '/users/new'"/>
 
 </body>
 </html>

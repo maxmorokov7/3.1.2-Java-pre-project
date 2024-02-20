@@ -29,7 +29,6 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "web")
-@EnableJpaRepositories(basePackages = "web.DAO")
 public class AppConfig {
 
     private Environment env;
