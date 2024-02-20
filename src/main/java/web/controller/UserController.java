@@ -25,7 +25,7 @@ public class UserController {
     public String addNewUser(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        return "userInfo";
+        return "/userInfo";
     }
 
 

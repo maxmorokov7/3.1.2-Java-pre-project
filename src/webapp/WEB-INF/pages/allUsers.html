@@ -16,7 +16,6 @@
         <th>Operations</th>
 
     </tr>
-    <c:forEach items="${listCustomer}" var="customer">
         <tr>
             <td>${user.name}</td>
             <td>${user.surname}</td>
@@ -28,8 +27,6 @@
                 <a href="/deleteUser?id=${user.id}">Delete</a>
             </td>
         </tr>
-    </c:forEach>
-
 </table>
 
 <br>
