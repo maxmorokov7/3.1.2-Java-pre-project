@@ -6,33 +6,46 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import web.Service.UserService;
 import web.model.User;
+
 import java.util.List;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    UserService userService;
 
-    @GetMapping("")
+    @Autowired
+    public UserController(UserService service) {
+        this.userService = service;
+    }
+
+    public UserController() {
+    }
+
+    @GetMapping()
     public String showAllUsers(Model model) {
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);
         return "allUsers";
     }
 
-    @GetMapping("/addNewUser")
+    @GetMapping("/new")
     public String addNewUser(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
+        model.addAttribute("user", new User());
         return "/userInfo";
     }
 
+    @PostMapping
+    public String create(@ModelAttribute("user")User user) {
+       userService.addUser(user);
+        return "redirect:/users";
+    }
 
     @RequestMapping("/updateUser")
     public String updateUser(@RequestParam("userId") long id, Model model) {
         User user = userService.getUserById(id);
+        userService.updateUser(user);
         model.addAttribute("user", user);
         return "userInfo";
     }
@@ -43,6 +56,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "userInfo";
     }
+
 
 
 }
