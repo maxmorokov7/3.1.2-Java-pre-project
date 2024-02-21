@@ -44,7 +44,6 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
 
-//    @Bean
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();

@@ -1,25 +1,41 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.springframework.org/tags/form">
 <head>
     <meta charset="UTF-8">
-    <title>Update User</title>
+    <title>Edit User</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/users/update(id=${user.getId()})}" th:object="${user}">
-    <label for="name">Enter name:</label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <br>
-    <label for="surname">Enter name:</label>
-    <input type="text" th:field="*{surname}" id="surname"/>
-    <br>
-    <label for="age">Enter name:</label>
-    <input type="text" th:field="*{age}" id="age"/>
-    <br>
-    <label for="department">Enter name:</label>
-    <input type="text" th:field="*{department}" id="department"/>
-    <br>
-    <br>
-    <input type="submit" value="Update!">
-</form>
+<div align="center">
+    <h2>Edit User</h2>
+    <form th:method="POST" th:action="@{/users/saveUpdatedUser(id=${user.getId()})}" th:object="${user}">
+        <table border="0" cellpadding="5">
+            <tr>
+                <td>ID: </td>
+                <td th:text="${user.id}">
+                    <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Name: </td>
+                <td><input type="text" th:field="*{name}" /></td>
+            </tr>
+            <tr>
+                <td>Surname: </td>
+                <td><input type="text" th:field="*{surname}" /></td>
+            </tr>
+            <tr>
+                <td>Age: </td>
+                <td><input type="text" th:field="*{age}" /></td>
+            </tr>
+            <tr>
+                <td>Department: </td>
+                <td><input type="text" th:field="*{department}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Save"></td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>

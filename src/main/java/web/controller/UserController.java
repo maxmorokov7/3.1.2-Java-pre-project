@@ -5,13 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import web.Service.UserService;
-import web.Service.UserServiceImpl;
 import web.model.User;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/users")
 public class UserController {
 
     UserService userService;
@@ -24,10 +23,10 @@ public class UserController {
     public UserController() {
     }
 
-    @GetMapping()
+    @GetMapping("")
     public String showAllUsers(Model model) {
-        List<User> allUsers = userService.getAllUsers();
-        model.addAttribute("allUsers", allUsers);
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
         return "allUsers";
     }
 
@@ -37,34 +36,35 @@ public class UserController {
         return "userInfo";
     }
 
-    @PostMapping
-    public String create(@ModelAttribute("user")User user) {
-       userService.addUser(user);
+    @PostMapping("/new")
+    public String create(@ModelAttribute("user") User user) {
+        userService.addUser(user);
         return "redirect:/users";
     }
 
     @GetMapping("/update")
-    public String updateUser(@RequestParam("id") long id, Model model) {
-        model.addAttribute("user",userService.getUserById(id));
+    public String updateUser(@RequestParam("id") Integer id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
         return "updateUser";
     }
 
-    @PostMapping("/update")
-    public String update(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
+    @PostMapping("/saveUpdatedUser")
+    public String saveUpdatedUser(@ModelAttribute("user") User updatedUser) {
+        userService.updateUser(updatedUser);
         return "redirect:/users";
     }
 
-//    @GetMapping("/update")
-//    public String updateUser(@ModelAttribute("newUser") User user){
-//        userService.updateUser(user);
-//        return "redirect:/users";
-//    }
-    @RequestMapping("/deleteUser")
-    public String deleteUser(@RequestParam("userId") long id, Model model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
-        return "userInfo";
+    @GetMapping("/delete")
+    public String deleteForm(Model model, @RequestParam("id") Integer id) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "deleteUser";
     }
 
+    @PostMapping("/delete")
+    public String deleteUser(@RequestParam("id") Integer id) {
+        userService.deleteUser(id);
+        return "redirect:/users";
+    }
 }
+
+
