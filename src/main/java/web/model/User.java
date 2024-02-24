@@ -20,19 +20,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer id;
+
+
     @Column
     @NotEmpty(message = "The name cannot be empty")
     @Size(min=2,max=45, message = "Enter from 2 to 45 characters")
     private String name;
+
+
     @Column
     @NotEmpty(message = "The surname cannot be empty")
     @Size(min=2,max=45, message = "Enter from 2 to 45 characters")
     private String surname;
+
     @Column
     @NotNull(message = "The age cannot be null")
     @Min(value = 14, message = "The age cannot be less than 14 years old")
     private Integer age;
+
     @Column
+    @NotEmpty(message = "The surname cannot be empty")
     private String department;
 
     public User() {
