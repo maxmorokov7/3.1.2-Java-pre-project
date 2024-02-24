@@ -12,6 +12,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 @Table(name="user")
@@ -36,7 +37,7 @@ public class User {
     @Column
     @NotNull(message = "The age cannot be null")
     @Min(value = 14, message = "The age cannot be less than 14 years old")
-    private Integer age;
+    private int age;
 
     @Column
     @NotEmpty(message = "The surname cannot be empty")
@@ -94,6 +95,19 @@ public class User {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age && Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(department, user.department);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, age, department);
+    }
+
+    @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
@@ -103,4 +117,5 @@ public class User {
                 ", department='" + department + '\'' +
                 '}';
     }
+
 }

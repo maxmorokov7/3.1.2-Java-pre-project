@@ -33,10 +33,10 @@
             <br/>
             <tr>
                 <td>Age: </td>
-                <td><input type="text" id="age" name="age" value="" min="14" required pattern="[0-9]+"/></td>
-<!--                <td>-->
-<!--                    <div th:if="${#fields.hasErrors('age')}" th:errors="age">Age Error</div>-->
-<!--                </td>-->
+                <td><input type="number" id="age" name="age" value="" min="14" required pattern="[0-9]+"/></td>
+                <td>
+                    <div th:if="${#fields.hasErrors('age')}" th:errors="age">Age Error</div>
+                </td>
             </tr>
             <br/>
             <br/>

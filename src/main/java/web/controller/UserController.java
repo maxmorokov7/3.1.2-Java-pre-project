@@ -55,10 +55,11 @@ public class UserController {
     }
 
     @PostMapping("/saveUpdatedUser")
-    public String saveUpdatedUser(@ModelAttribute("user") @Valid User updatedUser, BindingResult bindingResult) {
+    public String saveUpdatedUser(@ModelAttribute("user") @RequestParam("id") Integer id, @Valid User updatedUser, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "updateUser";
         }
+        System.out.println(updatedUser.toString());
         userService.updateUser(updatedUser);
         return "redirect:/users";
     }

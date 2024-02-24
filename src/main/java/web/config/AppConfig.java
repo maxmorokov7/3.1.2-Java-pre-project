@@ -10,7 +10,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -50,8 +49,6 @@ public class AppConfig {
     public LocalContainerEntityManagerFactoryBean getEntityFactoryBean() {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         Properties properties = new Properties();
-//        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//        localContainerEntityManagerFactoryBean.setPersistenceUnitName("web-last");
         localContainerEntityManagerFactoryBean.setDataSource(getDataSource());
         properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
