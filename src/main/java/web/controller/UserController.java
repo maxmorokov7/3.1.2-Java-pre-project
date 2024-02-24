@@ -1,19 +1,23 @@
 package web.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import web.Service.UserService;
 import web.model.User;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
 
-    UserService userService;
+    private UserService userService;
 
     @Autowired
     public UserController(UserService service) {
@@ -37,20 +41,24 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String create(@ModelAttribute("user") User user) {
-        userService.addUser(user);
+    public String create(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/users/new";
+        }userService.addUser(user);
         return "redirect:/users";
     }
 
     @GetMapping("/update")
     public String updateUser(@RequestParam("id") Integer id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        return "updateUser";
+        return "userInfo";
     }
 
     @PostMapping("/saveUpdatedUser")
-    public String saveUpdatedUser(@ModelAttribute("user") User updatedUser) {
-        userService.updateUser(updatedUser);
+    public String saveUpdatedUser(@ModelAttribute("user") @Valid User updatedUser, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "updateUser";
+        }userService.updateUser(updatedUser);
         return "redirect:/users";
     }
 

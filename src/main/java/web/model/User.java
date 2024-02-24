@@ -1,7 +1,17 @@
 package web.model;
 
 
-import javax.persistence.*;
+
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="user")
@@ -11,11 +21,17 @@ public class User {
     @Column
     private Integer id;
     @Column
+    @NotEmpty(message = "The name cannot be empty")
+    @Size(min=2,max=45, message = "Enter from 2 to 45 characters")
     private String name;
     @Column
+    @NotEmpty(message = "The surname cannot be empty")
+    @Size(min=2,max=45, message = "Enter from 2 to 45 characters")
     private String surname;
     @Column
-    private int age;
+    @NotNull(message = "The age cannot be null")
+    @Min(value = 14, message = "The age cannot be less than 14 years old")
+    private Integer age;
     @Column
     private String department;
 
