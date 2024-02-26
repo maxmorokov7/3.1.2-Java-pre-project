@@ -44,23 +44,24 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "userInfo";
         }
-        userService.addUser(user);
+        userService.saveUser(user);
         return "redirect:/users";
     }
 
+
     @GetMapping("/update")
-    public String updateUser(@RequestParam("id") Integer id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
-        return "userInfo";
+    public String updateUserForm(@RequestParam("id") Integer id, Model model) {
+        User user = userService.getUserById(id);
+        model.addAttribute("user", user);
+        return "updateUser";
     }
 
-    @PostMapping("/saveUpdatedUser")
-    public String saveUpdatedUser(@ModelAttribute("user") @RequestParam("id") Integer id, @Valid User updatedUser, BindingResult bindingResult) {
+    @PostMapping("/update")
+    public String saveUpdatedUser(@ModelAttribute("user") @Valid User updatedUser, BindingResult bindingResult) {
+        userService.updateUser(updatedUser);
         if (bindingResult.hasErrors()) {
             return "updateUser";
         }
-        System.out.println(updatedUser.toString());
-        userService.updateUser(updatedUser);
         return "redirect:/users";
     }
 

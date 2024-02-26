@@ -20,33 +20,32 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return entityManager.createQuery("select user from User user", User.class).getResultList();
+        return entityManager.createQuery("from User").getResultList();
     }
 
     @Override
     public User getUserById(Integer userId) {
-        TypedQuery<User> q = entityManager.createQuery("select user from User user where user.id =:userId", User.class);
-        q.setParameter("userId", userId);
-        return q.getResultList().stream().findAny().orElse(null);
+        return entityManager.find(User.class, userId);
     }
 
-
-    @Override
-    public void addUser(User user) {
+    public void saveUser(User user) {
+//        entityManager.persist(entityManager.contains(user) ? user : entityManager.merge(user));
         entityManager.persist(user);
     }
 
     @Override
     public void updateUser(User user) {
-        User userToUpdate = entityManager.find(User.class, user.getId());
-
-        if (userToUpdate != null) {
-            userToUpdate.setName(user.getName());
-            userToUpdate.setSurname(user.getSurname());
-            userToUpdate.setAge(user.getAge());
-            userToUpdate.setDepartment(user.getDepartment());
-        }
+//        User userToUpdate = getUserById(user.getId());
+//
+//        if (userToUpdate != null) {
+//            userToUpdate.setName(user.getName());
+//            userToUpdate.setSurname(user.getSurname());
+//            userToUpdate.setAge(user.getAge());
+//            userToUpdate.setDepartment(user.getDepartment());
+//        }
+        entityManager.merge(user);
     }
+
 
     @Override
     public void deleteUser(Integer userId) {

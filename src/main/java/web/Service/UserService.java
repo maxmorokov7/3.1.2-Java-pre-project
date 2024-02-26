@@ -11,7 +11,8 @@ public interface UserService {
 
     User getUserById(Integer userId);
 
-    void addUser(User user);
+    //    void addUser(User user);
+    public void saveUser(User user);
 
     void updateUser(User user);
 

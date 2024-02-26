@@ -17,8 +17,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
-
-
     @Override
     @Transactional(readOnly=true )
     public List<User> getAllUsers() {
@@ -32,19 +30,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public void addUser(User user) {
-        userDao.addUser(user);
+    public void saveUser(User user) {
+        userDao.saveUser(user);
     }
 
+//    @Override
+//    public void addUser(User user) {
+//        userDao.addUser(user);
+//    }
+
+
     @Override
-    @Transactional
     public void updateUser(User user) {
-        userDao.updateUser(user);
+    userDao.updateUser(user);
     }
 
     @Override
-    @Transactional
     public void deleteUser(Integer userId) {
         userDao.deleteUser(userId);
     }
