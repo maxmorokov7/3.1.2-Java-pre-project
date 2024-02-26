@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-    <form th:method="POST" th:action="@{/users/update}" method="post" th:object="${user}">
+        <form th:method="post" th:action="@{/users/update(id=${user.getId()})}" th:object="${user}">
         <table border="0" cellpadding="5">
             <tr>
                 <td>ID: </td>
